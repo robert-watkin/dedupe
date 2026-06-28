@@ -28,13 +28,13 @@ func sizeSort(unsortedFiles *[]fileDets, stderr io.Writer) error {
 	slices.SortFunc(sortedFiles, func(a, b fileDets) int {
 		return cmp.Compare(a.size, b.size)
 	})
+	// Correct way to update the caller's slice (using pointer to header)
+	*unsortedFiles = sortedFiles
 
 	// debugging loop
-	for _, file := range sortedFiles {
-		fmt.Fprintln(stderr, file.name, file.size)
-	}
-
-	unsortedFiles = &sortedFiles
+	// for _, file := range sortedFiles {
+	// 	fmt.Fprintln(stderr, file.name, file.size)
+	// }
 
 	// stderr debug log
 	fmt.Fprintf(stderr, "%v files scanned, %v candidates in %v size groups\n", len(*unsortedFiles), len(sortedFiles), len(filesPerGroup))

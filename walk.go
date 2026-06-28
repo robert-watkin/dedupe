@@ -28,7 +28,7 @@ func walk(rootName string, stderr io.Writer) ([]fileDets, error) {
 			return err
 		}
 
-		allFiles = append(allFiles, fileDets{path, info.Size()})
+		allFiles = append(allFiles, fileDets{path, info.Size(), nil})
 
 		return nil
 	})
