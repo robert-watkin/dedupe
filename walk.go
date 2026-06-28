@@ -15,7 +15,6 @@ func walk(rootName string, stderr io.Writer) ([]fileDets, error) {
 		if err != nil {
 			fmt.Fprintln(stderr, "WARNING: File is unreadable -", err)
 			return nil
-
 		}
 
 		// non-regular file gets skipped
